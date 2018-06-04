@@ -26,7 +26,8 @@
 
 - name: set eip filter
   set_fact:
-    _aws_vpc_eip_filter: "[{'key': 'tag:{{ item.key }}', 'val': '{{ item.val }}'}] + {{ _aws_vpc_eip_filter | default([]) }}"
+    _aws_vpc_eip_filter: >-
+      [{'key': 'tag:{{ item.key }}', 'val': '{{ item.val }}'}] + {{ _aws_vpc_eip_filter | default([]) }}
   with_items:
     - "{{ _aws_vpc_eip_tags }}"
 

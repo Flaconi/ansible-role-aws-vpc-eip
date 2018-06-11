@@ -10,6 +10,7 @@ This role is able to create any number of EIP's
 
 * Ansible 2.5
 
+
 ## Additional variables
 
 Additional variables that can be used (either as `host_vars`/`group_vars` or via command line args):
@@ -20,6 +21,7 @@ Additional variables that can be used (either as `host_vars`/`group_vars` or via
 | `aws_vpc_eip_default_region`            | Default region to use                   |
 | `aws_vpc_eip_release_on_disassociation` | Release EIP upon disassociation         |
 | `aws_vpc_eip_reuse_existing_ip_allowed` | Reuse any unassociated EIP if it exists |
+
 
 ## Example definition
 
@@ -53,4 +55,25 @@ aws_vpc_eips:
         val: devops
       - key: env
         val: testing
+```
+
+
+## Testing
+
+#### Requirements
+
+* Docker
+* [yamllint](https://github.com/adrienverge/yamllint)
+
+#### Run tests
+
+```bash
+# Lint the source files
+make lint
+
+# Run integration tests with default Ansible version
+make test
+
+# Run integration tests with custom Ansible version
+make test ANSIBLE_VERSION=2.4
 ```

@@ -54,9 +54,9 @@
   ec2_eip:
     # Fixed values
     state: present
-    release_on_disassociation: True
-    reuse_existing_ip_allowed: True
     # Optional values
+    release_on_disassociation: "{{ eip.release_on_disassociation | default(aws_vpc_eip_release_on_disassociation) }}"
+    reuse_existing_ip_allowed: "{{ eip.reuse_existing_ip_allowed | default(aws_vpc_eip_reuse_existing_ip_allowed) }}"
     public_ip: "{{ eip.public_ip | default(omit) }}"
     region: "{{ eip.region | default(aws_vpc_eip_default_region | default(omit)) }}"
     aws_access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY') | default(omit) }}"

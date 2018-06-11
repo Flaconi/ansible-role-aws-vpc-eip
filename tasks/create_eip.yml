@@ -18,7 +18,7 @@
 - name: ensure variables are reset
   set_fact:
     _aws_vpc_eip_tags: []
-    _aws_vpc_eip_filter: []
+    _aws_vpc_eip_filters: []
 
 - name: set eip tags
   set_fact:
@@ -26,8 +26,8 @@
 
 - name: set eip filters
   set_fact:
-    _aws_vpc_eip_filter: >-
-      [{'key': 'tag:{{ item.key }}', 'val': '{{ item.val }}'}] + {{ _aws_vpc_eip_filter | default([]) }}
+    _aws_vpc_eip_filters: >-
+      {{ _aws_vpc_eip_filters | default([]) }} + [{'key': 'tag:{{ item.key }}', 'val': '{{ item.val }}'}]
   with_items:
     - "{{ _aws_vpc_eip_tags }}"
 
@@ -43,7 +43,7 @@
     security_token: "{{ lookup('ENV', 'AWS_SECURITY_TOKEN') | default(omit) }}"
     profile: "{{ aws_vpc_eip_profile | default(omit) }}"
     region: "{{ eip.region | default(aws_vpc_eip_default_region) }}"
-    filters: "{{ _aws_vpc_eip_filter | get_attr('key', 'val') }}"
+    filters: "{{ _aws_vpc_eip_filters | get_attr('key', 'val') }}"
   register: _aws_vpc_eip_facts
 
 

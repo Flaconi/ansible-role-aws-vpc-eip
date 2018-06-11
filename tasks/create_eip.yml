@@ -83,3 +83,4 @@
     profile: "{{ aws_vpc_eip_profile | default(omit) }}"
   when:
     - _aws_vpc_eip_facts.addresses | length == 0
+    - _aws_vpc_eip is succeeded

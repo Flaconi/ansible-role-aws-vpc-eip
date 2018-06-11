@@ -4,7 +4,7 @@ This role is able to create any number of EIP's
 
 [![Build Status](https://travis-ci.org/Flaconi/ansible-role-aws-vpc-eip.svg?branch=master)](https://travis-ci.org/Flaconi/ansible-role-aws-vpc-eip)
 [![Version](https://img.shields.io/github/tag/Flaconi/ansible-role-aws-vpc-eip.svg)](https://github.com/Flaconi/ansible-role-aws-vpc-eip/tags)
-<!-- [![Ansible Galaxy](https://img.shields.io/ansible/role/d/26013.svg)](https://galaxy.ansible.com/Flaconi/aws-vpc-eip/) -->
+[![Ansible Galaxy](https://img.shields.io/ansible/role/d/26253.svg)](https://galaxy.ansible.com/Flaconi/aws-vpc-eip/)
 
 ## Requirements
 

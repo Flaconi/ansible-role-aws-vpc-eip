@@ -1,0 +1,12 @@
+---
+
+###
+### Sane defaults
+###
+
+aws_vpc_eip_default_region: eu-central-1
+
+aws_vpc_eip_release_on_disassociation: False
+aws_vpc_eip_reuse_existing_ip_allowed: False
+
+aws_vpc_eips: []

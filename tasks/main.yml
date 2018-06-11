@@ -1,0 +1,10 @@
+---
+
+###
+### Main entrypoint
+###
+- include_tasks: create_eip.yml
+  loop_control:
+    loop_var: eip
+  with_items:
+    - "{{ aws_vpc_eips }}"

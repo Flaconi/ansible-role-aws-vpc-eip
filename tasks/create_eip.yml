@@ -15,7 +15,7 @@
 ### Variables
 ###
 
-- name: ensure variables are resetted
+- name: ensure variables are reset
   set_fact:
     _aws_vpc_eip_tags: []
     _aws_vpc_eip_filter: []
@@ -24,7 +24,7 @@
   set_fact:
     _aws_vpc_eip_tags: "[{'key': 'Name', 'val': '{{ eip.name }}'}] + {{ eip.tags | default([]) }}"
 
-- name: set eip filter
+- name: set eip filters
   set_fact:
     _aws_vpc_eip_filter: >-
       [{'key': 'tag:{{ item.key }}', 'val': '{{ item.val }}'}] + {{ _aws_vpc_eip_filter | default([]) }}
@@ -48,9 +48,9 @@
 
 
 ###
-### create eip if not exist
+### create eip if none exist
 ###
-- name: ensure eip is created
+- name: ensure eip is created if none exists
   ec2_eip:
     # Fixed values
     state: present
@@ -67,7 +67,7 @@
   when:
     - _aws_vpc_eip_facts.addresses | length == 0
 
-- name: ensure eip tags are created
+- name: ensure eip is tagged
   ec2_tag:
     # Fixed values
     state: present

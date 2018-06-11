@@ -22,7 +22,7 @@
 
 - name: set eip tags
   set_fact:
-    _aws_vpc_eip_tags: "[{'key': 'Name', 'val': '{{ eip.name }}'}] + {{ eip.tags | default([]) }}"
+    _aws_vpc_eip_tags: "{{ eip.tags | default([]) }} + [{'key': 'Name', 'val': '{{ eip.name }}'}]"
 
 - name: set eip filters
   set_fact:

@@ -38,9 +38,9 @@
 
 - name: gather eip facts by filter
   ec2_eip_facts:
-    aws_access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY') | default(omit) }}"
-    aws_secret_key: "{{ lookup('ENV', 'AWS_SECRET_KEY') | default(omit)  }}"
-    security_token: "{{ lookup('ENV', 'AWS_SECURITY_TOKEN') | default(omit) }}"
+    aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') | default(omit) }}"
+    aws_secret_key: "{{ lookup('env', 'AWS_SECRET_KEY') | default(omit)  }}"
+    security_token: "{{ lookup('env', 'AWS_SECURITY_TOKEN') | default(omit) }}"
     profile: "{{ aws_vpc_eip_profile | default(omit) }}"
     region: "{{ eip.region | default(aws_vpc_eip_default_region) }}"
     filters: "{{ _aws_vpc_eip_filters | get_attr('key', 'val') }}"
@@ -59,9 +59,9 @@
     reuse_existing_ip_allowed: "{{ eip.reuse_existing_ip_allowed | default(aws_vpc_eip_reuse_existing_ip_allowed) }}"
     public_ip: "{{ eip.public_ip | default(omit) }}"
     region: "{{ eip.region | default(aws_vpc_eip_default_region | default(omit)) }}"
-    aws_access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY') | default(omit) }}"
-    aws_secret_key: "{{ lookup('ENV', 'AWS_SECRET_KEY') | default(omit)  }}"
-    security_token: "{{ lookup('ENV', 'AWS_SECURITY_TOKEN') | default(omit) }}"
+    aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') | default(omit) }}"
+    aws_secret_key: "{{ lookup('env', 'AWS_SECRET_KEY') | default(omit)  }}"
+    security_token: "{{ lookup('env', 'AWS_SECURITY_TOKEN') | default(omit) }}"
     profile: "{{ aws_vpc_eip_profile | default(omit) }}"
   register: _aws_vpc_eip
   when:
@@ -77,9 +77,9 @@
     tags: "{{  _aws_vpc_eip_tags | get_attr('key', 'val') }}"
     # Optional values
     region: "{{ eip.region | default(aws_vpc_eip_default_region | default(omit)) }}"
-    aws_access_key: "{{ lookup('ENV', 'AWS_ACCESS_KEY') | default(omit) }}"
-    aws_secret_key: "{{ lookup('ENV', 'AWS_SECRET_KEY') | default(omit)  }}"
-    security_token: "{{ lookup('ENV', 'AWS_SECURITY_TOKEN') | default(omit) }}"
+    aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') | default(omit) }}"
+    aws_secret_key: "{{ lookup('env', 'AWS_SECRET_KEY') | default(omit)  }}"
+    security_token: "{{ lookup('env', 'AWS_SECURITY_TOKEN') | default(omit) }}"
     profile: "{{ aws_vpc_eip_profile | default(omit) }}"
   when:
     - _aws_vpc_eip_facts.addresses | length == 0
